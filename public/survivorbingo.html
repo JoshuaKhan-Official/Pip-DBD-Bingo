@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Dead By Daylight Bingo Generator</title>
+    <meta charset="UTF-8" />
+    <link rel="icon" href="BloodpointsIcon.ico">
+    <!-- Google Font link for Roboto -->
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="static/css/styles.css">
+    <!-- seedrandom.js by David Bau for PRNG usage -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/seedrandom/3.0.5/seedrandom.min.js"></script>
+    <script src="static/scripts/DBDBingo.js"></script>
+  </head>
+  
+  <body class="cGray" bgcolor="#1c1a5e">
+  <main data-content-wrapper>
+    <section data-content-view="survivor">
+    <div style="overflow-x:auto">
+      <img src="static/pics/BingoLogo.png" id="BingoLogo" class="centerBPS" height="100%" width="100%"/>
+     
+      <div style="float:right;">
+        <label class="switch">
+          <input type="checkbox">
+          <span class="slider round"></span>
+        </label>
+      </div>
+    
+    </div>
+    
+    <table class="center">
+      <tr>
+        <td id="a1"></td>
+        <td id="a2"></td>
+        <td id="a3"></td>
+        <td id="a4"></td>
+        <td id="a5"></td>
+      </tr>
+      <tr>
+        <td id="b1"></td>
+        <td id="b2"></td>
+        <td id="b3"></td>
+        <td id="b4"></td>
+        <td id="b5"></td>
+      </tr>
+      <tr>
+        <td id="c1"></td>
+        <td id="c2"></td>
+        <td id="c3">
+            <img src="static/pics/Overcharge_Logo.webp" height="100%" width="100%" class="centerBPS"/>
+            <div id="freespace"></div>
+        </td>
+        <td id="c4"></td>
+        <td id="c5"></td>
+      </tr>
+      <tr>
+        <td id="d1"></td>
+        <td id="d2"></td>
+        <td id="d3"></td>
+        <td id="d4"></td>
+        <td id="d5"></td>
+      </tr>
+      <tr>
+        <td id="e1"></td>
+        <td id="e2"></td>
+        <td id="e3"></td>
+        <td id="e4"></td>
+        <td id="e5"></td>
+      </tr>
+    </table>
+  </main>
+    <br>
+
+    <div class="buttons">
+      <button type="button" id="generate">Generate New Sheet</button>
+    </div>
+    <br>
+    <div class="buttons">
+      <label for="seed">Seed:</label>
+      <input type="text" id="seed" name="seed"><br><br>
+      <button type="button" id="inputSeed">Input Seed</button>
+      <button onclick="copySeed()">Copy Seed To Clipboard</button>
+    </div>
+  
+    <br>
+    
+ 
+    <div class="buttons">
+      <h2>Options:</h2>
+      <button type="button" class="collapsible">DLC Selector (hover for details, check to enable killer, survivor(s), and associated perks)</button>
+      <div id="spantitles" class="checkboxes" style="display: none;"></div><br>
+      <input type="checkbox" id="toxic" name="toxic">
+      <label for="toxic">Include toxic challenges</label>
+      <br><br>
+
+      <i>Made based on a previously uploaded site for DBD Bingo, reorganized and updated by <a href="https://github.com/Marethyu99">MarethyuEternal</a></i>
+    </div>
+    <br><br><br><br><br>
+    <div class="buttons">
+      <h2>Rules/Usage:</h2>
+      <table class="center" id="RuleTable">
+        <tr><td class="ruleTD">1. Currently, this site is designed with DBD Streamer <a href="https://www.twitch.tv/pipkiller94" style="color: lightblue;">Pipkiller94</a> in mind, but it should be compatible with any other streamer at the time of its official deployment.</td></tr>
+        <tr><td class="ruleTD">2. You are intended to see the bingo sheet before the match begins to map out what you'd like to go for throughout the trial. For an extra challenge, you can generate a brand new sheet after each match, but the intended use is to fill the sheet over the course of a stream.</td></tr>
+        <tr><td class="ruleTD">3. In order to minimize ambiguity in the challenges, "you" references the sheet holder specifically, and any survivor means ANY of the four in the trial, including the sheet holder.</td></tr>
+        <tr><td class="ruleTD">4. Clicking on a tile on your bingo sheet marks it as complete and you can click it again to remove it in the event you selected the incorrect tile. (Simple flip) </td></tr>
+        <tr><td class="ruleTD">5. Later on, the "Include toxic challenges" checkbox will function as a way to add some mean, yet (hopefully) balanced challenges. Toxic challenges are intended for the Kill Your Friends gamemode ONLY, and should they be used in regular matches, all manner of bad behaviour is hence attributed to the sheet user's own misuse of the challenges. Respectable and fair play is always encouraged.</td></tr>
+        <tr><td class="ruleTD">6. Have fun. This is a small project that will hopefully serve to add some spice to all who play DBD, adjustable for players of all skill levels, backgrounds, and mains</td></tr>
+      </table>
+    </div>
+    <br>
+    <div class="buttons">
+      <h2>Challenge Clarification In Alphabetical Order 
+      <!--  (* indicates toxic challenge): -->
+      </h2>
+      <table class="center" id="RuleTable">
+        <!--Max out your earned Bloodpoints in the " + getRandomSurvivorBloodpointCategory() + " category
+        <tr><td class="ruleTD"><b>Challenge name</b>: </td></tr>-->
+
+        <tr><td class="ruleTD"><b>All survivors loot a combined X+ chests total</b>: Loot includes unlocking a chest and taking the item OR rummaging through an already opened chest and retrieving an item. TL;DR: you all get a combined X+ amount of items from chests.</td></tr>
+        <tr><td class="ruleTD"><b>All survivors play as free/starting survivors or paid DLC survivors</b> or <b>Killer is a free/starting killer or paid DLC killer</b>: I only play on PC, so I'm not sure who is free or not on console or Dead By Daylight Mobile. On PC the free survivors are Dwight, Meg, Claudette, Jake, Nea, Bill, and David and the free killers are Trapper, Wraith, Hillbilly, Nurse, and Huntress.</td></tr>
+        <tr><td class="ruleTD"><b>Body block a survivor-carrying killer successfully</b>: This means a survivor wiggles off the killer's shoulder because you blocked the killer's path to a hook. In other words, you need to make the killer swing at you or block a doorway (anything that increases the journey to a possible hook and includes you getting very close to the killer).</td></tr>
+<!--        <tr><td class="ruleTD"><b>*Drop every pallet you walk through (even if they are fake Doctor/Freddy pallets)</b>: I know you can't drop fake Doctor pallets, but walking through them and making them disappear counts. Fake Freddy pallets explode into blood when dropped, but can still be dropped nonetheless.</td></tr> -->
+        <tr><td class="ruleTD"><b>Escape the trial as the obession or die as the obession</b>: Escape, be sacrificed, be killed, or bleed out while you are the survivor. Does not matter if the obsession changes after the fact.</td></tr>
+        <tr><td class="ruleTD"><b>Dead Hard while in a chase and successfully dodge an attack</b> or <b>get hit due to server issues</b>: This means you pressed your binded key to use the perk Dead Hard, and you either dodged a killer's attack that otherwise would have deep wounded or downed you, or got deep wounded or downed anyways due to server issues/latency respectively. This challenge includes deep wound circumstances to account for situations such as a Legion who is frenzying or survivors running perks such as Borrowed Time or Mettle of Man.</td></tr>
+        <tr><td class="ruleTD"><b>Killer brings a Chase/Tracking perk</b>: Perks that count include Bamboozle, Beast of Prey, Blood Echo, Bloodhound, Brutal Strength, Coup de Grace, Cruel Limits, Dark Devotion, Enduring, Fire Up, Forced Penance, Furtive Chase, Hex: Blood Favor, Hex: Crowd Control, Hex: Devour Hope, I'm All Ears, Infectious Fright, Nemesis, Play With Your Food, Predator, Save The Best For Last, Shadowborn, Sloppy Butcher, Spies From the Shadows, Spirit Fury, Stridor, Unrelenting, and Whispers. There could be an argument to be made that Agitation, Deerstalker, Mad Grit, Mindbreaker, and Zanshin Tactics are Chase or Tracking perks depending on how you use them, but I'll leave that to your SWF squad's judgement.</td></tr>
+        <tr><td class="ruleTD"><b>Killer brings a Hex perk</b>: Perks that count include Hex: Blood Favor, Hex: Crowd Control, Hex: Devour Hope, Hex: Haunted Ground, Hex: Huntress Lullaby, Hex: No One Escapes Death, Hex: Retribution, Hex: Ruin, Hex: The Third Seal, Hex: Thrill of the Hunt, and Hex: Undying. You may think these are obvious, but this also serves as a nice list of all of the Hex perks in the game so far.</td></tr>
+        <tr><td class="ruleTD"><b>Killer brings an Exposure perk</b>: Perks that count include Dragon's Grip, Hex: Devour Hope, Hex: Haunted Ground, Hex: No One Escapes Death, Iron Maiden, Make Your Choice, Rancor, and Starstruck.</td></tr>
+        <tr><td class="ruleTD"><b>Killer brings an Info/Aura-Reading perk</b>: Perks that count include A Nurse's Calling, Barbecue & Chilli, Bitter Murmur, Blood Warden, Corrupt Intervention, Cruel Limits, Dead Man's Switch, Deathbound, Deerstalker, Discordance, Dragon's Grip, Franklin's Demise, Gearhead, Hangman's Trick, Hex: Retribution, Hex: Thrill of the Hunt, Hex: Undying, Hoarder, I'm All Ears, Infectious Fright, Iron Maiden, Rancor, Spies From the Shadows, Surveillance, Territorial Imperative, Thrilling Tremors, Tinkerer, Trail of Torment, Whispers, and Zanshin Tactics. There could be an argument to be made that all Hex perks give a loud notification when broken making them an Info perk, but I'll leave that to your SWF squad's judgement.</td></tr>
+        <tr><td class="ruleTD"><b>Killer eats X+ Decisive Strikes this trial</b>: Eating a Decisive Strike means the survivor successfully hits their Decisive Strike skillcheck and frees themselves from the killer's grasp. Do this a combined X or more times throughout your SWF squad this trial.</td></tr>
+        <tr><td class="ruleTD"><b>Killer facecamps</b>: If the killer stays within basic attack range of a hooked survivor and doesn't leave, that's facecamping.</td></tr>
+        <tr><td class="ruleTD"><b>Max out your earned Bloodpoints in the Objective/Survival/Altruism/Boldness category</b>: Earn 8,000 Bloodpoints in the respective category before any bonuses are applied (such as Bloodhunts or Bloodpoint-increasing offerings).</td></tr>
+<!--        <tr><td class="ruleTD"><b>*Put some indication, fake or real, that you're a Twitch streamer in your name</b>: This is easily done on PC but not on console (unsure about DBD Mobile). Change your name to have "twitch.tv/" or ".TTV" or something very similar in your username so the killer thinks you are a streamer. Likely to cause the killer to tunnel you.</td></tr> -->
+<!--        <tr><td class="ruleTD"><b>*Sandbag a teammate</b>: Do something unforgivable to make sure a fellow survivor gets screwed over, such as dropping a pallet they were about to loop a killer through and causing them to get hit, blocking a narrow path so the killer hits them, blocking a vault location so they can't dodge a killer's hit, etc.</td></tr>  -->
+        <tr><td class="ruleTD"><b>You get farmed</b> or <b>*You farm a teammate</b>: This means a survivor unhooked you when the killer was close by and the rescuing survivor wasn't running a perk that guaranteed any level of safety to the rescued survivor, such as Borrowed Time. Typically this also means the rescued survivor gets put into the dying state again right after being unhooked but it's definitely possible you could escape the killer if they are respecting the unhook or your team takes protection hits.</td></tr>
+
+      </table>
+    </div>
+    <br><br><br><br><br><br>
+  </body>
+    <script type="module">
+  // Import the functions you need from the SDKs you need
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.4/firebase-app.js";
+  import { getAnalytics } from "https://www.gstatic.com/firebasejs/10.12.4/firebase-analytics.js";
+  // TODO: Add SDKs for Firebase products that you want to use
+  // https://firebase.google.com/docs/web/setup#available-libraries
+
+  // Your web app's Firebase configuration
+  // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+  const firebaseConfig = {
+    apiKey: "AIzaSyDP5AQATuA1EfpyWjORyNyJ3jvU9XrcTSU",
+    authDomain: "pipdbdbingo.firebaseapp.com",
+    databaseURL: "https://pipdbdbingo-default-rtdb.firebaseio.com",
+    projectId: "pipdbdbingo",
+    storageBucket: "pipdbdbingo.appspot.com",
+    messagingSenderId: "1079913339914",
+    appId: "1:1079913339914:web:5802ae44477de8454013f3",
+    measurementId: "G-H2ZT5EY0HC"
+  };
+
+  // Initialize Firebase
+  const app = initializeApp(firebaseConfig);
+  const analytics = getAnalytics(app);
+</script>
+
+</html>
